@@ -14,8 +14,16 @@ public class Digits
      */
     public Digits(int num)
     {
-        Integer digit = num;
-        digitList.add(digit);
+        digitList = new ArrayList<Integer>();
+        if (num == 0)
+        {
+            digitList.add(0);
+        }
+        while (num > 0)
+        {
+            digitList.add(0, (num % 10));
+            num /= 10;
+        }
     }
 
     // GETTER METHOD: added to enable test code (not provided in original FRQ)
@@ -30,11 +38,11 @@ public class Digits
      */
     public boolean isStrictlyIncreasing()
     {
-        for (int i = 0; i < digitList.size(); i++)
+        for (int i = 0; i < digitList.size() - 1; i++)
         {
             int currentNum = digitList.get(i);
             int nextNum = digitList.get(i + 1);
-            if (currentNum > nextNum) {
+            if (currentNum >= nextNum) {
                 return false;
             }
         }
